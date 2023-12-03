@@ -10,15 +10,30 @@
 <h2>
     ベース半音下げチューニング
 </h2>
-    <button id="S4">4弦(D#1)</button>
-    <button id="S3">3弦(G#1)</button>
-    <button id="S2">2弦(C#2)</button>
-    <button id="S1">1弦(F#2)</button>
+
+<div>
+    <button id="S4-h">4弦(D#1)</button>
+    <button id="S3-h">3弦(G#1)</button>
+    <button id="S2-h">2弦(C#2)</button>
+    <button id="S1-h">1弦(F#2)</button>
+</div>
+
+<h2>
+    普通のチューニング
+</h2>
+
+    <div>
+        <button id="S4">4弦(E1)</button>
+        <button id="S3">3弦(A1)</button>
+        <button id="S2">2弦(D2)</button>
+        <button id="S1">1弦(G2)</button>
+    </div>
+        
 
     
     <script>
-        //4弦の音を鳴らす
-        document.getElementById('S4').addEventListener('click', function() {
+        //半音チューニング
+        document.getElementById('S4-h').addEventListener('click', function() {
             // mp3ファイルのURL
             const url = "./samples_bass-electric_E1.mp3";
 
@@ -41,7 +56,7 @@
 
         //3,2,1弦も同様に作成する
         //3弦の音を鳴らす
-        document.getElementById('S3').addEventListener('click', function() {
+        document.getElementById('S3-h').addEventListener('click', function() {
             // mp3ファイルのURL
             const url = "./samples_bass-electric_E1.mp3";
 
@@ -62,7 +77,7 @@
         });
 
         //2弦の音を鳴らす
-        document.getElementById('S2').addEventListener('click', function() {
+        document.getElementById('S2-h').addEventListener('click', function() {
             // mp3ファイルのURL
             const url = "./samples_bass-electric_E1.mp3";
 
@@ -82,7 +97,7 @@
             });
         });
         //1弦の音を鳴らす
-        document.getElementById('S1').addEventListener('click', function() {
+        document.getElementById('S1-h').addEventListener('click', function() {
             // mp3ファイルのURL
             const url = "./samples_bass-electric_E1.mp3";
 
@@ -101,6 +116,91 @@
                
             });
         });
+
+    //通常チューニング
+    document.getElementById('S4').addEventListener('click', function() {
+            // mp3ファイルのURL
+            const url = "./samples_bass-electric_E1.mp3";
+
+            // Tone.Samplerを使用してmp3ファイルを読み込む
+            const sampler = new Tone.Sampler({
+                urls: {
+                    "E1": url,
+                },
+                baseUrl: "",
+            }).toDestination();
+
+            // 音声の再生
+            //1秒をおきにD 2,G 2,C2を鳴らす
+            const now = Tone.now();
+            Tone.loaded().then(() => {
+                sampler.triggerAttackRelease("E1", "5",now);
+
+            });
+        });
+
+        //3,2,1弦も同様に作成する
+        //3弦の音を鳴らす
+        document.getElementById('S3').addEventListener('click', function() {
+            // mp3ファイルのURL
+            const url = "./samples_bass-electric_E1.mp3";
+
+            // Tone.Samplerを使用してmp3ファイルを読み込む
+            const sampler = new Tone.Sampler({
+                urls: {
+                    "E1": url,
+                },
+                baseUrl: "",
+            }).toDestination();
+
+            // 音声の再生
+            const now = Tone.now();
+            Tone.loaded().then(() => {
+                sampler.triggerAttackRelease("A1", "5",now);
+               
+            });
+        });
+
+        //2弦の音を鳴らす
+        document.getElementById('S2').addEventListener('click', function() {
+            // mp3ファイルのURL
+            const url = "./samples_bass-electric_E1.mp3";
+
+            // Tone.Samplerを使用してmp3ファイルを読み込む
+            const sampler = new Tone.Sampler({
+                urls: {
+                    "E1": url,
+                },
+                baseUrl: "",
+            }).toDestination();
+
+            // 音声の再生
+            const now = Tone.now();
+            Tone.loaded().then(() => {
+                sampler.triggerAttackRelease("D2", "5",now);
+               
+            });
+        });
+        //1弦の音を鳴らす
+        document.getElementById('S1').addEventListener('click', function() {
+            // mp3ファイルのURL
+            const url = "./samples_bass-electric_E1.mp3";
+
+            // Tone.Samplerを使用してmp3ファイルを読み込む
+            const sampler = new Tone.Sampler({
+                urls: {
+                    "E1": url,
+                },
+                baseUrl: "",
+            }).toDestination();
+
+            // 音声の再生
+            const now = Tone.now();
+            Tone.loaded().then(() => {
+                sampler.triggerAttackRelease("G2", "5",now);
+               
+            });
+        });    
     </script>
 </body>
 </html>
